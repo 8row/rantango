@@ -52,12 +52,12 @@ function h($value) {
 	<div class="row">
 		<div class="a"></div>
 		<!--<a href="user.php" class="a button">ユーザーデータ変更</a>-->
-		<a href="logout.php" class="b button">ログアウト</a>
+		<a href="logout.php" class="b button font90">ログアウト</a>
 	</div>
 	<hr>
 	<form class="row mb40" action="create-book.php" method="post">
 		<input type="text" name="book_name" placeholder=" 単語帳名を入力してください" class="a" maxlength="30">
-		<button class="b">とうろく</button>
+		<button class="b font90">単語帳作成</button>
 	</form>
 	<ul>
 	<?php

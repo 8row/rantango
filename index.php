@@ -23,12 +23,12 @@ function h($value) {
 	</div>
 	<div id="form-wrap">
 		<div id="tab">
-			<div id="entry-tab">ユーザーさくせい</div>
+			<div id="entry-tab">ユーザー作成</div>
 			<div id="login-tab">ログイン</div>
 		</div>
 		<form action="entry_do.php" method="post" id="entry">
 			<div>
-				<input type="text" name="name" placeholder=" ユーザーネームを半角英数字で入力してください" maxlength="30" value="<?php
+				<input type="text" name="name" placeholder="ユーザーネームを半角英数字で入力してください" maxlength="30" value="<?php
 					if(!empty($_SESSION['post']['name'])){
 						echo h($_SESSION['post']['name']);
 					}
@@ -43,7 +43,7 @@ function h($value) {
 				?>
 			</div>
 			<div>
-				<input type="text" name="password" placeholder=" パスワードを4文字以上の半角英数字で入力してください" maxlength="30" value="<?php
+				<input type="text" name="password" placeholder="パスワードを4文字以上の半角英数字で入力してください" maxlength="30" value="<?php
 					if(!empty($_SESSION['post']['password'])){
 						echo h($_SESSION['post']['password']);
 					}
@@ -54,11 +54,11 @@ function h($value) {
 					}
 				?>
 			</div>
-			<button type="submit">さくせいする</button>
+			<button type="submit">作成する</button>
 		</form>
 		<form action="book-list.php" method="post" id="login">
 			<div>
-				<input type="text" name="name" placeholder=" ユーザーネームを半角英数字で入力してください" maxlength="30" value="<?php
+				<input type="text" name="name" placeholder="ユーザーネームを半角英数字で入力してください" maxlength="30" value="<?php
 					if(!empty($_SESSION['login_error']['name'])){
 						echo h($_SESSION['login_error']['name']);
 					}
@@ -68,7 +68,7 @@ function h($value) {
 				?>
 			</div>
 			<div>
-				<input type="text" name="password" placeholder=" パスワードを4文字以上の半角英数字で入力してください" maxlength="30" value="<?php
+				<input type="text" name="password" placeholder="パスワードを4文字以上の半角英数字で入力してください" maxlength="30" value="<?php
 					if(!empty($_SESSION['login_error']['password'])){
 						echo h($_SESSION['login_error']['password']);
 					}

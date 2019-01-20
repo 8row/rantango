@@ -51,6 +51,7 @@ function h($value) {
   </head>
 <body id="rantango">
 <div id="wrap">
+    <div id="frame"></div>
 	<dl>
         <?php
             $words = $db->prepare('SELECT * FROM word_table WHERE user_id=? AND book_id=? ORDER BY id DESC');
@@ -66,9 +67,9 @@ function h($value) {
         </div>
         <?php endwhile; ?>
     </dl>
-        <div id="next" style="display:none;">NEXT</div>
-        <div id="answer">ANSWER</div>
-        <a href="book-list.php" class="back">BACK</a>
+    <div id="next" style="display:none;">NEXT</div>
+    <div id="answer">ANSWER</div>
+    <a href="book-list.php" class="back">BACK</a>
 </div>
 </body>
 </html>
