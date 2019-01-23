@@ -43,7 +43,7 @@ function h($value) {
 				?>
 			</div>
 			<div>
-				<input type="text" name="password" placeholder="パスワードを4文字以上の半角英数字で入力してください" maxlength="30" value="<?php
+				<input type="password" name="password" placeholder="パスワードを4文字以上の半角英数字で入力してください" maxlength="30" value="<?php
 					if(!empty($_SESSION['post']['password'])){
 						echo h($_SESSION['post']['password']);
 					}
@@ -68,7 +68,7 @@ function h($value) {
 				?>
 			</div>
 			<div>
-				<input type="text" name="password" placeholder="パスワードを4文字以上の半角英数字で入力してください" maxlength="30" value="<?php
+				<input type="password" name="password" placeholder="パスワードを4文字以上の半角英数字で入力してください" maxlength="30" value="<?php
 					if(!empty($_SESSION['login_error']['password'])){
 						echo h($_SESSION['login_error']['password']);
 					}
