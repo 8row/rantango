@@ -20,7 +20,9 @@ body{
 	text-align: center;
 	padding: 20px;
 }
-input[type="text"], textarea {
+input[type="text"],
+input[type="password"],
+textarea {
 	border-radius: 0.2rem;
 	border:solid 1px #cccccc;
 	font-family: 'M PLUS 1p', sans-serif;
@@ -223,7 +225,8 @@ hr{
 	border-radius: 0 0 0.6rem 0.6rem;
 	padding: 20px;
 }
-#top input[type="text"] {
+#top input[type="text"],
+#top input[type="password"] {
 	width:90%;
 }
 /*トップページ*/

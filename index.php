@@ -80,6 +80,13 @@ function h($value) {
 			<button type="submit">ログインする</button>
 		</form>
 	</div>
+	<p style="text-align: left;margin: 40px 0;"><span style="font-size: 2rem; font-family: 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', Meiryo, メイリオ, Osaka, 'MS PGothic', arial, helvetica, sans-serif;">ランタンゴ</span>とは、<br>
+簡単に登録した単語をランダムに表示し、もう一回タップして説明を表示できるアプリです。<br>
+スマホとパソコンから利用することができるので、パソコンから単語を登録して、スマホで勉強することができます。<br>
+<br>
+	ユーザーを作成するには、1文字以上の半角英数字のユーザーネームと4文字以上の半角英数字のパスワードを入力して作成することが出来ます。<br>
+最後にログインしてから半年経つとログアウトされますので、その際は、再度ログインしてください。</p>
+
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script>

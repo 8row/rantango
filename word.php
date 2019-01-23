@@ -71,6 +71,9 @@ function h($value) {
         <hr>
     <?php endwhile; ?>
     </ul>
+    <p style="text-align: left;">説明<br>名前変更で単語帳名を変更することができます。<br>
+単語とその説明をセットで登録してください。<br>
+登録した内容は、編集から変更することができます。</p>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 </body>
