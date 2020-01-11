@@ -1,106 +1,114 @@
-<?php 
+<?php
 session_start();
 // htmlspecialcharsのショートカット
-function h($value) {
+function h($value){
 	return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 }
 ?>
 <!doctype html>
 <html lang="jp">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap-reboot.min.css">
-    <title>ランタンゴ</title>
-    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
-    <link href="css/common.css" rel="stylesheet">
-  </head>
-<body id="top">
-<div id="wrap">
-	<div>
-		<h1><img src="img/rantango_logo.png" alt="ランタンゴ"></h1>
+
+<head>
+	<?php require('require/head.php'); ?>
+	<title>ランタンゴ</title>
+</head>
+
+<body>
+	<div class="container-fluid">
+		<h1><img src="img/rantango_logo.png" alt="ランタンゴ" class="img-fluid mt-5"></h1>
 		<!--<p>説明</p>-->
-	</div>
-	<div id="form-wrap">
-		<div id="tab">
-			<div id="entry-tab">ユーザー作成</div>
-			<div id="login-tab">ログイン</div>
-		</div>
-		<form action="entry_do.php" method="post" id="entry">
-			<div>
-				<input type="text" name="name" placeholder="ユーザーネームを半角英数字で入力してください" maxlength="30" value="<?php
-					if(!empty($_SESSION['post']['name'])){
-						echo h($_SESSION['post']['name']);
+		<form action="user_entry.php" method="post" class="mt-5">
+			<div class="form-group">
+				<h2 class="h4 font-weight-bold">ユーザー作成</h2>
+				<p>ユーザーネームを半角英数字で入力してください</p>
+				<input type="text" name="user_name" placeholder="ユーザーネーム" maxlength="30" value="<?php
+					if ($_SESSION['error']['user_name']) {
+						echo h($_SESSION['error']['user_name']);
+					}elseif($_SESSION['error']['duplicate']) {
+						echo h($_SESSION['error']['duplicate']);
+					}elseif($_SESSION['noerror']['user_name']) {
+						echo h($_SESSION['noerror']['user_name']);
 					}
-				?>" required>
+					?>" class="form-control" required>
 				<?php
-					if(!empty($_SESSION['error']['name'])){
-						print("<br>【入力が正しくありません】");
-					}
-					if(!empty($_SESSION['error']['duplicate'])){
-						print("<br>【このユーザー名は使えません】");
-					}
+				if ($_SESSION['error']['user_name']) {
+					print('<br><span class="error">【入力が正しくありません】</span>');
+				}elseif($_SESSION['error']['duplicate']) {
+					print('<br><span class="error">【このユーザー名はすでに存在しているので使えません】</span>');
+				}
 				?>
 			</div>
-			<div>
-				<input type="password" name="password" placeholder="パスワードを4文字以上の半角英数字で入力してください" maxlength="30" value="<?php
-					if(!empty($_SESSION['post']['password'])){
-						echo h($_SESSION['post']['password']);
+			<div class="form-group">
+				<p>パスワードを4文字以上の半角英数字で入力してください</p>
+				<input type="password" name="password" placeholder="パスワード" maxlength="30" value="<?php
+					if ($_SESSION['error']['password']) {
+						echo h($_SESSION['error']['password']);
+					}elseif($_SESSION['noerror']['password']) {
+						echo h($_SESSION['noerror']['password']);
 					}
-				?>" required>
+					?>" class="form-control" required>
 				<?php
-					if(!empty($_SESSION['error']['password'])){
-						print("<br>【入力が正しくありません】");
-					}
+				if ($_SESSION['error']['password']) {
+					print('<br><span class="error">【入力が正しくありません】</span>');
+				}
 				?>
 			</div>
-			<button type="submit">作成する</button>
+			<label class="form-check">
+				<input type="checkbox" name="cookie_save" value="on" <?php
+					if($_SESSION['cookie_save']){ echo 'checked'; }
+				?> class="form-check-input">
+				クッキーに保存してログイン状態を保持する
+			</label>
+			<button type="submit" class="btn btn-primary w-50 mx-auto d-block">作成する</button>
 		</form>
-		<form action="book-list.php" method="post" id="login">
-			<div>
-				<input type="text" name="name" placeholder="ユーザーネームを半角英数字で入力してください" maxlength="30" value="<?php
-					if(!empty($_SESSION['login_error']['name'])){
-						echo h($_SESSION['login_error']['name']);
+		<form action="user_login.php" method="post" class="mt-5">
+			<h2 class="h4 font-weight-bold">ログイン</h2>
+			<div class="form-group">
+				<p>ユーザーネームを半角英数字で入力してください</p>
+				<input type="text" name="user_name" placeholder="ユーザーネーム" maxlength="30" value="<?php
+					if (!empty($_SESSION['login_error']['user_name'])) {
+						echo h($_SESSION['login_error']['user_name']);
 					}
-				?>" required>
+					?>" class="form-control" required>
 				<?php
-					//if(!empty($_SESSION['error']['name'])){						print("<br>【入力が正しくありません】");					}
-				?>
+				if(!empty($_SESSION['error']['user_name'])){
+					print('<br><span class="error">【入力が正しくありません】</span>');
+				}
+			?>
 			</div>
-			<div>
-				<input type="password" name="password" placeholder="パスワードを4文字以上の半角英数字で入力してください" maxlength="30" value="<?php
-					if(!empty($_SESSION['login_error']['password'])){
+			<div class="form-group">
+				<p>パスワードを4文字以上の半角英数字で入力してください</p>
+				<input type="password" name="password" placeholder="パスワード" maxlength="30" value="<?php
+					if (!empty($_SESSION['login_error']['password'])) {
 						echo h($_SESSION['login_error']['password']);
 					}
-				?>" required>
+					?>" class="form-control" required>
 				<?php
-					//if(!empty($_SESSION['error']['password'])){						print("<br>【入力が正しくありません】");					}
+				if(!empty($_SESSION['error']['password'])){
+					print('<br><span class="error">【入力が正しくありません】</span>');
+				}
 				?>
 			</div>
-			<button type="submit">ログインする</button>
+			<label class="form-check">
+				<input type="checkbox" name="cookie_save" value="on" <?php
+					if($_SESSION['cookie_save']){ echo 'checked'; }
+				?> class="form-check-input">
+				クッキーに保存してログイン状態を保持する
+			</label>
+			<button type="submit" class="btn btn-primary w-50 mx-auto d-block">ログインする</button>
 		</form>
+		<p class="mt-5">ランタンゴとは、<br>
+			簡単に登録した単語をランダムに表示し、もう一回タップして説明を表示できるアプリです。<br>
+			スマホとパソコンから利用することができるので、パソコンから単語を登録して、スマホで勉強することができます。<br>
+			<br>
+			ユーザーを作成するには、1文字以上の半角英数字のユーザーネームと4文字以上の半角英数字のパスワードを入力して作成することが出来ます。<br>
+			最後にログインしてから半年経つとログアウトされますので、その際は、再度ログインしてください。</p>
 	</div>
-	<p style="text-align: left;margin: 40px 0;"><span style="font-size: 2rem; font-family: 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', Meiryo, メイリオ, Osaka, 'MS PGothic', arial, helvetica, sans-serif;">ランタンゴ</span>とは、<br>
-簡単に登録した単語をランダムに表示し、もう一回タップして説明を表示できるアプリです。<br>
-スマホとパソコンから利用することができるので、パソコンから単語を登録して、スマホで勉強することができます。<br>
-<br>
-	ユーザーを作成するには、1文字以上の半角英数字のユーザーネームと4文字以上の半角英数字のパスワードを入力して作成することが出来ます。<br>
-最後にログインしてから半年経つとログアウトされますので、その際は、再度ログインしてください。</p>
-
-</div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script>
-	$(function(){
-		$("#login").css("display", "none");
-		$("#entry-tab").click(function(){
-			$("#entry").css("display", "block");
-			$("#login").css("display", "none");
-		});
-		$("#login-tab").click(function(){
-			$("#login").css("display", "block");
-			$("#entry").css("display", "none");
-		});
-	});
-</script>
 </body>
+
 </html>
+<?php
+unset($_SESSION['error']);
+unset($_SESSION['noerror']);
+unset($_SESSION['login-error']);
+?>

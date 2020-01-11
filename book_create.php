@@ -1,14 +1,14 @@
 <?php
-if(empty($_COOKIE['rantango_user'])){
-    header('Location: index.php');
-    exit();
-}
-require('dbconnect.php');
-session_start();
-if(!empty($_POST['book_name'])){
+// ログイン状態か確認
+require('require/check_login.php');
+
+// データベースに接続
+require('require/dbconnect.php');
+
+if($_POST['book_name']){
 	$statement = $db->prepare('INSERT INTO book_table SET user_id=?, book_name=?, created=NOW()');
 	$statement->execute(array(
-		$_COOKIE['rantango_id'],
+		$_SESSION['user_id'],
 		$_POST['book_name']
 	));
 }
